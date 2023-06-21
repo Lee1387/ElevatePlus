@@ -3,7 +3,29 @@
 # DiscordBotTS
 discord.js & typescript bot with **levelling** and **activity tracking** utilities. 
 
-## TODO
+## 📦 Main Technologies
+| Package  | Utility |
+| ------------- | ------------- |
+| typescript  | type safety  |
+| discord.js  | discord bot baseline |
+| mongoose  | storing data  |
+| i18n  | internationalisation-framework  |
+| dotenv  | environment variables  |
+| nodemon  | development  |
+
+
+## 🚀 Running
+```
+git clone https://github.com/Lee1387/DiscordBotTS
+cd discordbotts
+npm install 
+```
+Set up your .env file
+```
+npm run dev
+```
+
+## 🚧 TODO
 * Handle user actions
     * User joins server
     * User leaves server
@@ -21,3 +43,5 @@ discord.js & typescript bot with **levelling** and **activity tracking** utiliti
     * Events
         * Skill (League of Legends)
         * Skin (puzzle) (League of Legends)
+
+        
