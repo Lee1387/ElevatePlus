@@ -1,4 +1,4 @@
-![DiscordBotTS](https://discord.com/api/oauth2/authorize?client_id=1120538073214754847&permissions=8&scope=bot)
+![DiscordBotTS]
 
 # DiscordBotTS
 
