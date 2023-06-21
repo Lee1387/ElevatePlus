@@ -12,6 +12,9 @@ discord.js & typescript bot with **levelling** and **activity tracking** utiliti
 | i18n  | internationalisation-framework  |
 | dotenv  | environment variables  |
 | nodemon  | development  |
+| node-html-to-image  | messages with html & css  |
+| Tailwind CSS  | css framework  |
+
 
 
 ## 🚀 Running
@@ -27,8 +30,6 @@ npm run dev
 
 ## 🚧 TODO
 * Handle user actions
-    * User joins server
-    * User leaves server
     * Show profile
     * Leaderboard
 
