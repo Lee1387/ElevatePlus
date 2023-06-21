@@ -1,48 +1,78 @@
 ![DiscordBotTS]
 
-# DiscordBotTS
-discord.js & typescript bot with **levelling** and **activity tracking** utilities. 
+# 🌌 DiscordBotTS
+Advanced Discord Application with **levelling** and **activity tracking** utilities. 
 
-## 📦 Main Technologies
-| Package  | Utility |
+## 📦 Used Packages
+| 📦 Package  | 📋 Reasons |
 | ------------- | ------------- |
-| typescript  | type safety  |
-| discord.js  | discord bot baseline |
-| mongoose  | storing data  |
-| i18n  | internationalisation-framework  |
-| dotenv  | environment variables  |
-| nodemon  | development  |
-| node-html-to-image  | messages with html & css  |
-| Tailwind CSS  | css framework  |
-
-
+| TypeScript  | Type safety  |
+| discord.js  | Discord bot baseline |
+| Mongoose  | Storing data  |
+| i18n  | Internationalisation-framework  |
+| Dotenv  | Environment variables  |
+| Nodemon  | Development  |
+| node-html-to-image  | Messages with HTML & CSS  |
+| Tailwind CSS  | CSS Framework  |
+| discord-logs | Extended discord events |
+| moment | Time formatting |
 
 ## 🚀 Running
+Get MongoDB instance running for storing data
 ```
 git clone https://github.com/Lee1387/DiscordBotTS
 cd discordbotts
 npm install 
 ```
-Set up your .env file
+Set up your .env file with your bot token, application id, and MongoDB connection string.
+
+Run Development Server
 ```
 npm run dev
 ```
+Or
+Run Production Build
+```
+npm run build
+```
 
 ## 🚧 TODO
-* Handle user actions
-    * Show profile
-    * Leaderboard
 
-* Server activity tracking
-    * Watching channels (schemas/VoiceActivity.ts)
-    * Watching presence (schemas/PresenceActivity.ts)
-    * Watching chat (distinct image from text message) (schemas/User.ts)
-    * Watching streams (streaming will pay off)
-
-* Custom events
-    * Answering event in event message thread.
+* Experience system
+    * Level formula 
+    * Level up notification
+    * Daily reward notification
     * Events
-        * Skill (League of Legends)
-        * Skin (puzzle) (League of Legends)
+        * guildUserLeveledUp(user, guild)
+        * guildUserRecievedDailyReward(user, guild)
+* User profiles
+    * Week activity graph
+    * Statistics
+* Server statistics notifications
+    * Daily activity graph
+    * Monthly activity graph
+* Games
+    * Commands
+        * /skin invite @user
+        * /skill invite @user
+    * List
+        * League of Legends skin puzzle
+        * League of Legends skill
+    * Caching
+        * Caching skin/skill images to reduce API calls
+* User activity tracking
+    * Track user presence
+        * Events
+            * guildMemberOnline
+            * guildMemberOffline
+    * Track user voice activity and streaming state
+        * Events
+            * voiceChannelJoin
+            * voiceChannelLeave
+            * voiceChannelSwitch
+            * voiceChannelDeaf
+            * voiceChannelUndeaf
+            * voiceStreamingStart
+            * voiceStreamingStop
 
         
