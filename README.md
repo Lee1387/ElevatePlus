@@ -4,7 +4,8 @@
 discord.js & typescript bot with **levelling** and **activity tracking** utilities. 
 
 ## TODO
-* Send to all guilds
+* Functions
+    * Send to all guilds
 
 * User (schemas/User.ts) in Mongo
     * follow user (followers will receive a message when followed join channel)
@@ -12,9 +13,11 @@ discord.js & typescript bot with **levelling** and **activity tracking** utiliti
 * Server activity tracking
     * Watching channels (schemas/VoiceActivity.ts)
     * Watching presence (schemas/StatusActivity.ts)
+    * Watching chat (distinct image from text message) (schemas/User.ts)
+    * Watching streams (streaming will pay off)
 
 * Custom events
-    * League of Legends skill
-    * League of Legends puzzle
-
-* Thread based responses 
+    * Answering event in event message thread.
+    * Events
+        * Skill (League of Legends)
+        * Skin (puzzle) (League of Legends)
