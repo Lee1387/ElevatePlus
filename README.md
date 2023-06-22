@@ -16,6 +16,8 @@ Advanced Discord Application with **levelling** and **activity tracking** utilit
 | Tailwind CSS  | CSS Framework  |
 | discord-logs | Extended discord events |
 | moment | Time formatting |
+| node-vibrant | Cool looking embed colors |
+| canvas | Image processing |
 
 ## 🚀 Running
 Get MongoDB instance running for storing data
@@ -39,12 +41,13 @@ npm run build
 ## 🚧 TODO
 
 * Experience system
-    * ~~Level formula~~
-    * ~~Level up notification~~
-    * Daily reward notification
+    * Level formula
+    * Level up notification sent in current voice text channel
+    * Daily reward notification sent in current voice text channel
     * Events
-        * ~~guildUserLeveledUp(user, guild)~~
-        * guildUserRecievedDailyReward(user, guild)
+        * userLeveledUp(user, guild) ✅
+        * userRecievedDailyReward(user, guild)
+        
 * User profiles
     * Week activity graph
     * Statistics
