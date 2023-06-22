@@ -44,10 +44,10 @@ npm run build
     * Level formula
     * Level up notification sent in current voice text channel
     * Daily reward notification sent in current voice text channel
+    * Experiece based permissions
     * Events
         * userLeveledUp(user) ✅
         * userRecievedDailyReward(user)
-
 
 * User activity tracking
     * Track user presence
