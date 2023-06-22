@@ -156,11 +156,50 @@ const updateUserStatistics = async (client: ExtendedClient, user: User, extended
 
     userSource.stats.level = expToLevel(userSource.stats.exp); // Update level
     userSource.stats.exp = 0; // Reset exp
+
     await userSource.save();
 
     if(userLeveledUpDuringUpdate) await client.emit("userLeveledUp", userSource, user); // Emitting event
 
     return userSource;
+};
+
+const everyUser = async (client: ExtendedClient, callback: (user: DatabaseUser & Document) => void) => {
+    const users = await getUsers();
+    for await (const user of users) {
+        await callback(user);
+    }
+}
+
+const clearTemporaryStatistics = async (client: ExtendedClient, type: string) => {
+    const blankTemporaryStatistic = {
+        exp: 0,
+        time: {
+            voice: 0,
+            presence: 0
+        },
+        games: {
+            won: {
+                skill: 0,
+                skins: 0
+            }
+        }
+    };
+
+    everyUser(client, async (sourceUser) => {
+        switch(type) {
+            case "day":
+                sourceUser.day = blankTemporaryStatistic;
+                break;
+            case "week":
+                sourceUser.week = blankTemporaryStatistic;
+                break;
+            case "month":
+                sourceUser.month = blankTemporaryStatistic;
+                break;
+        }
+        await sourceUser.save();
+    });
 };
 
 export { createUser, deleteUser, getUser, getUsers, createUsers, updateUser, updateUserStatistics, expToLevel, levelToExp, UserModel };
