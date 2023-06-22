@@ -44,26 +44,9 @@ npm run build
     * Level formula
     * Level up notification sent in current voice text channel
     * Daily reward notification sent in current voice text channel
-    * Experiece based permissions
-    * Events
-        * userLeveledUp(user) ✅
-        * userRecievedDailyReward(user)
-
-* User activity tracking
-    * Track user presence
-        * Events
-            * guildMemberOnline
-            * guildMemberOffline
-    * Track user voice activity and streaming state ✅
-        * Events
-            * voiceChannelJoin
-            * voiceChannelLeave
-            * voiceChannelSwitch
-            * voiceChannelDeaf
-            * voiceChannelUndeaf
-            * voiceStreamingStart
-            * voiceStreamingStop
-    * Reward activity with EXP when activity ends
+    * Experience based roles
+        * Experience based permissions
+        * Experience based channels
 
 * Server
     * Daily activity graph
