@@ -4,13 +4,14 @@ export interface Statistics {
   exp: number;
   time: {
     voice: number;
+    presence: number;
   };
   games: {
     won: {
       skill: number;
       skins: number;
-    }
-  }
+    };
+  };
 }
 
 export interface ExtendedStatistics extends Statistics {
@@ -24,13 +25,14 @@ export interface ExtendedStatisticsPayload {
   exp?: number;
   time?: {
     voice?: number;
+    presence?: number;
   };
   games?: {
     won?: {
       skill?: number;
       skins?: number;
-    }
-  }
+    };
+  };
 }
 
 export interface User {

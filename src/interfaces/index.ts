@@ -4,6 +4,7 @@ export { User } from "./User";
 export { Config } from "./Config"; 
 export { Guild } from "./Guild";
 export { Interaction } from "./Interaction";
+export { PresenceActivity } from "./PresenceActivity";
 export { VoiceActivity } from "./VoiceActivity";
 export { Command } from "./Command";
 export { Button } from "./Button";

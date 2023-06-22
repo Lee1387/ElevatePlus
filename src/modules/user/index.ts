@@ -98,55 +98,59 @@ const updateUser = async (user: User) => {
     return exists;
 }
 
-const updateUserStatistics = async (client: ExtendedClient, user: User, extendedStatisticsPayLoad: ExtendedStatisticsPayload) => {
+const updateUserStatistics = async (client: ExtendedClient, user: User, extendedStatisticsPayload: ExtendedStatisticsPayload) => {
     const userSource = await updateUser(user) as DatabaseUser & Document;
     const newExtendedStatistics: ExtendedStatistics = {
-        level: userSource.stats.level + (extendedStatisticsPayLoad.level || 0),
-        exp: userSource.stats.exp + (extendedStatisticsPayLoad.exp || 0),
+        level: userSource.stats.level + (extendedStatisticsPayload.level || 0),
+        exp: userSource.stats.exp + (extendedStatisticsPayload.exp || 0),
         time: {
-            voice: userSource.stats.time.voice + (extendedStatisticsPayLoad.time?.voice || 0)
+            voice: userSource.stats.time.voice + (extendedStatisticsPayload.time?.voice || 0),
+            presence: userSource.stats.time.presence + (extendedStatisticsPayload.time?.presence || 0)
         },
-        commands: userSource.stats.commands + (extendedStatisticsPayLoad.commands || 0),
+        commands: userSource.stats.commands + (extendedStatisticsPayload.commands || 0),
         games: {
             won: {
-                skill: userSource.stats.games.won.skill + (extendedStatisticsPayLoad.games?.won?.skill || 0),
-                skins: userSource.stats.games.won.skins + (extendedStatisticsPayLoad.games?.won?.skins || 0),
+                skill: userSource.stats.games.won.skill + (extendedStatisticsPayload.games?.won?.skill || 0),
+                skins: userSource.stats.games.won.skins + (extendedStatisticsPayload.games?.won?.skins || 0)
             }
         }
     };
     const day: Statistics = {
-        exp: userSource.day.exp + (extendedStatisticsPayLoad.exp || 0),
+        exp: userSource.day.exp + (extendedStatisticsPayload.exp || 0),
         time: {
-            voice: userSource.day.time.voice + (extendedStatisticsPayLoad.time?.voice || 0)
+            voice: userSource.day.time.voice + (extendedStatisticsPayload.time?.voice || 0),
+            presence: userSource.day.time.presence + (extendedStatisticsPayload.time?.presence || 0)
         },
         games: {
             won: {
-                skill: userSource.day.games.won.skill + (extendedStatisticsPayLoad.games?.won?.skill || 0),
-                skins: userSource.day.games.won.skins + (extendedStatisticsPayLoad.games?.won?.skins || 0) 
+                skill: userSource.day.games.won.skill + (extendedStatisticsPayload.games?.won?.skill || 0),
+                skins: userSource.day.games.won.skins + (extendedStatisticsPayload.games?.won?.skins || 0)
             }
         }
     }
     const week: Statistics = {
-        exp: userSource.week.exp + (extendedStatisticsPayLoad.exp || 0),
+        exp: userSource.week.exp + (extendedStatisticsPayload.exp || 0),
         time: {
-            voice: userSource.week.time.voice + (extendedStatisticsPayLoad.time?.voice || 0)
+            voice: userSource.week.time.voice + (extendedStatisticsPayload.time?.voice || 0),
+            presence: userSource.week.time.presence + (extendedStatisticsPayload.time?.presence || 0)
         },
         games: {
             won: {
-                skill: userSource.week.games.won.skill + (extendedStatisticsPayLoad.games?.won?.skill || 0),
-                skins: userSource.week.games.won.skins + (extendedStatisticsPayLoad.games?.won?.skins || 0)
+                skill: userSource.week.games.won.skill + (extendedStatisticsPayload.games?.won?.skill || 0),
+                skins: userSource.week.games.won.skins + (extendedStatisticsPayload.games?.won?.skins || 0)
             }
         }
     }
     const month: Statistics = {
-        exp: userSource.month.exp + (extendedStatisticsPayLoad.exp || 0),
+        exp: userSource.month.exp + (extendedStatisticsPayload.exp || 0),
         time: {
-            voice: userSource.month.time.voice + (extendedStatisticsPayLoad.time?.voice || 0)
+            voice: userSource.month.time.voice + (extendedStatisticsPayload.time?.voice || 0),
+            presence: userSource.month.time.presence + (extendedStatisticsPayload.time?.presence || 0)
         },
         games: {
             won: {
-                skill: userSource.month.games.won.skill + (extendedStatisticsPayLoad.games?.won?.skill || 0),
-                skins: userSource.month.games.won.skins + (extendedStatisticsPayLoad.games?.won?.skins || 0)
+                skill: userSource.month.games.won.skill + (extendedStatisticsPayload.games?.won?.skill || 0),
+                skins: userSource.month.games.won.skins + (extendedStatisticsPayload.games?.won?.skins || 0)
             }
         }
     }
@@ -164,8 +168,8 @@ const updateUserStatistics = async (client: ExtendedClient, user: User, extended
     userSource.stats.level = expToLevel(userSource.stats.exp); // Update level
 
     await userSource.save();
-
-    if(userLeveledUpDuringUpdate) await client.emit("userLeveledUp", userSource, user); // Emitting event
+    
+    if(userLeveledUpDuringUpdate) await client.emit("userLeveledUp", userSource, user); // Emiting event
 
     return userSource;
 };
