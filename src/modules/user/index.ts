@@ -104,8 +104,7 @@ const updateUserStatistics = async (client: ExtendedClient, user: User, extended
         level: userSource.stats.level + (extendedStatisticsPayLoad.level || 0),
         exp: userSource.stats.exp + (extendedStatisticsPayLoad.exp || 0),
         time: {
-            voice: userSource.stats.time.voice + (extendedStatisticsPayLoad.time?.voice || 0),
-            presence: userSource.stats.time.presence + (extendedStatisticsPayLoad.time?.presence || 0)
+            voice: userSource.stats.time.voice + (extendedStatisticsPayLoad.time?.voice || 0)
         },
         commands: userSource.stats.commands + (extendedStatisticsPayLoad.commands || 0),
         games: {
@@ -118,8 +117,7 @@ const updateUserStatistics = async (client: ExtendedClient, user: User, extended
     const day: Statistics = {
         exp: userSource.day.exp + (extendedStatisticsPayLoad.exp || 0),
         time: {
-            voice: userSource.day.time.voice + (extendedStatisticsPayLoad.time?.voice || 0),
-            presence: userSource.day.time.presence + (extendedStatisticsPayLoad.time?.presence || 0)
+            voice: userSource.day.time.voice + (extendedStatisticsPayLoad.time?.voice || 0)
         },
         games: {
             won: {
@@ -131,8 +129,7 @@ const updateUserStatistics = async (client: ExtendedClient, user: User, extended
     const week: Statistics = {
         exp: userSource.week.exp + (extendedStatisticsPayLoad.exp || 0),
         time: {
-            voice: userSource.week.time.voice + (extendedStatisticsPayLoad.time?.voice || 0),
-            presence: userSource.week.time.presence + (extendedStatisticsPayLoad.time?.presence || 0)
+            voice: userSource.week.time.voice + (extendedStatisticsPayLoad.time?.voice || 0)
         },
         games: {
             won: {
@@ -144,8 +141,7 @@ const updateUserStatistics = async (client: ExtendedClient, user: User, extended
     const month: Statistics = {
         exp: userSource.month.exp + (extendedStatisticsPayLoad.exp || 0),
         time: {
-            voice: userSource.month.time.voice + (extendedStatisticsPayLoad.time?.voice || 0),
-            presence: userSource.month.time.presence + (extendedStatisticsPayLoad.time?.presence || 0)
+            voice: userSource.month.time.voice + (extendedStatisticsPayLoad.time?.voice || 0)
         },
         games: {
             won: {

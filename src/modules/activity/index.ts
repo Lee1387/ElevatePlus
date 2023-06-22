@@ -1,32 +1,12 @@
 import { GuildMember, Presence } from "discord.js";
 import ExtendedClient from "../../client/ExtendedClient";
 
-import preseneActivitySchema from "../schemas/PresenceActivity";
-import { PresenceActivity } from "../../interfaces";
+import voiceActivitySchema from "../schemas/VoiceActivity";
 import mongoose from "mongoose";
+import moment from "moment";
+import { updateUserStatistics } from "../user";
 
-const PresenceActivityModel = mongoose.model("PresenceActivity", preseneActivitySchema);
+const voiceActivityModel = mongoose.model("VoiceActivity", voiceActivitySchema);
 
-const startPresenceActivity = async (client: ExtendedClient, member: GuildMember, newStatus: Presence) => {
-    const presenceActivity = new PresenceActivityModel({
-        userId: member.id,
-        from: new Date(),
-        status: newStatus.status,
-        clientStatus: newStatus.clientStatus
-    });
-    await presenceActivity.save();
-    return presenceActivity;
-};
+export { voiceActivityModel };
 
-const endPresenceActivity = async (client: ExtendedClient, member: GuildMember, oldStatus: Presence) => {
-    const presenceActivity = await PresenceActivityModel.findOne({ userId: member.id, to: null });
-    if(!presenceActivity) return new Error("PresenceActivity not found");
-
-    presenceActivity.to = new Date();
-    presenceActivity.status = oldStatus.status;
-
-    await presenceActivity.save();
-    return presenceActivity;
-};
-
-export { startPresenceActivity, endPresenceActivity, PresenceActivityModel };
