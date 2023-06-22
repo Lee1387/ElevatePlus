@@ -213,4 +213,4 @@ const clearTemporaryStatistics = async (client: ExtendedClient, type: string) =>
     });
 };
 
-export { createUser, deleteUser, getUser, getUserRank, getUsers, createUsers, updateUser, updateUserStatistics, expToLevel, levelToExp, UserModel };
+export { createUser, deleteUser, getUser, getUserRank, getUsers, createUsers, updateUser, updateUserStatistics, expToLevel, levelToExp, everyUser, clearTemporaryStatistics, UserModel };
