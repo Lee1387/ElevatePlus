@@ -54,7 +54,7 @@ npm run build
         * Events
             * guildMemberOnline
             * guildMemberOffline
-    * Track user voice activity and streaming state
+    * Track user voice activity and streaming state ✅
         * Events
             * voiceChannelJoin
             * voiceChannelLeave
