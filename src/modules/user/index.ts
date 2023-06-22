@@ -88,7 +88,10 @@ const updateUserStatistics = async (client: ExtendedClient, user: User, extended
     const newExtendedStatistics: ExtendedStatistics = {
         level: userSource.stats.level + (extendedStatisticsPayLoad.level ?? 0),
         exp: userSource.stats.exp + (extendedStatisticsPayLoad.exp ?? 0),
-        time: userSource.stats.time + (extendedStatisticsPayLoad.time ?? 0),
+        time: {
+            voice: userSource.stats.time.voice + (extendedStatisticsPayLoad.time?.voice ?? 0),
+            presence: userSource.stats.time.presence + (extendedStatisticsPayLoad.time?.presence ?? 0)
+        },
         commands: userSource.stats.commands + (extendedStatisticsPayLoad.commands ?? 0),
         games: {
             won: {
@@ -98,15 +101,8 @@ const updateUserStatistics = async (client: ExtendedClient, user: User, extended
         }
     };
     const newStatistics: Statistics = {
-        exp: userSource.stats.exp + (extendedStatisticsPayLoad.exp ?? 0),
-        time: userSource.stats.time + (extendedStatisticsPayLoad.time ?? 0),
-        games: {
-            won: {
-                skill: userSource.stats.games.won.skill + (extendedStatisticsPayLoad.games?.won?.skill ?? 0),
-                skins: userSource.stats.games.won.skins + (extendedStatisticsPayLoad.games?.won?.skins ?? 0)
-            }
-        }
-    }
+        ...newExtendedStatistics,
+    };
 
     userSource.stats = newExtendedStatistics;
     userSource.day = newStatistics;
