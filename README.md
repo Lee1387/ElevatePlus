@@ -18,6 +18,7 @@ Advanced Discord Application with **levelling** and **activity tracking** utilit
 | moment | Time formatting |
 | node-vibrant | Cool looking embed colors |
 | canvas | Image processing |
+| node-cron | scheduling |
 
 ## 🚀 Running
 Get MongoDB instance running for storing data
@@ -39,7 +40,6 @@ npm run build
 ```
 
 ## 🚧 TODO
-
 * Experience system
     * Level formula
     * Level up notification sent in current voice text channel
@@ -47,10 +47,13 @@ npm run build
     * Events
         * userLeveledUp(user, guild) ✅
         * userRecievedDailyReward(user, guild)
+
         
 * User profiles
     * Week activity graph
     * Statistics
+        * Clear day, week, month statistics using cron jobs
+        
 * Server statistics notifications
     * Daily activity graph
     * Monthly activity graph
