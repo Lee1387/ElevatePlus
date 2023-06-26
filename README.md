@@ -44,9 +44,13 @@ npm run build
     * Level formula
     * Level up notification sent in current voice text channel
     * Daily reward notification sent in current voice text channel
-    * Experience based roles
-        * Experience based permissions
-        * Experience based channels
+    * Experience based roles ✅
+    * Experience based permissions
+    * Experience based channels
+
+* User profile 
+    * Follow system
+        * When user follows another user, they will receive notifications about their new status in DM
 
 * Server
     * Daily activity graph
