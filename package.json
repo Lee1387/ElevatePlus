@@ -1,7 +1,7 @@
 {
   "name": "discordbotts",
   "version": "1.0.0",
-  "description": "",
+  "description": "Advanced Discord Application with levelling and activity tracking utilities.",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
