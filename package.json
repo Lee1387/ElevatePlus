@@ -8,7 +8,15 @@
     "start": "node .",
     "dev": "nodemon --config nodemon.json src/index.ts"
   },
-  "keywords": ["discord bot", "discord", "bot", "utility", "economy", "activity", "activity tracking"],
+  "keywords": [
+    "discord bot",
+    "discord",
+    "bot",
+    "utility",
+    "economy",
+    "activity",
+    "activity tracking"
+  ],
   "author": "Lee1387",
   "license": "ISC",
   "devDependencies": {
