@@ -6,8 +6,8 @@ import { getGuild } from "../modules/guild";
 import { getDailyRewardMessagePayload } from "../modules/messages";
 
 
-export const userRecievedDailyReward: Event = {
-    name: "userRecievedDailyReward",
+export const userReceivedDailyReward: Event = {
+    name: "userReceivedDailyReward",
     run: async (client: ExtendedClient, user: User, guild: Guild, next: number) => {
         const sourceGuild = await getGuild(guild);
         if(!sourceGuild || !sourceGuild.channelId) return;
