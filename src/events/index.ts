@@ -21,6 +21,7 @@ import { voiceStreamingStop } from "./voiceStreamingStop";
 import { presenceUpdate } from "./presenceUpdate";
 import { messageCreate } from "./messageCreate";
 import { userReceivedDailyReward } from "./userReceivedDailyReward";
+import { yearly } from "./yearly";
 
 const events: Event[] = [
     ready,
@@ -44,7 +45,8 @@ const events: Event[] = [
     voiceStreamingStop,
     presenceUpdate,
     messageCreate,
-    userReceivedDailyReward
+    userReceivedDailyReward,
+    yearly
 ];
 
 export default events;
