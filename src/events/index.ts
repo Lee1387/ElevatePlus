@@ -22,6 +22,7 @@ import { presenceUpdate } from "./presenceUpdate";
 import { messageCreate } from "./messageCreate";
 import { userReceivedDailyReward } from "./userReceivedDailyReward";
 import { yearly } from "./yearly";
+import { error } from "./error";
 
 const events: Event[] = [
     ready,
@@ -46,7 +47,8 @@ const events: Event[] = [
     presenceUpdate,
     messageCreate,
     userReceivedDailyReward,
-    yearly
+    yearly,
+    error
 ];
 
 export default events;
