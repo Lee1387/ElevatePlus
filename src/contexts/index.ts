@@ -1,9 +1,9 @@
 import { ContextMenu } from "../interfaces";
-import userContext from "./userContext";
+import profileContext from "./profileContext";
 import guildStatisticsContext from "./guildStatisticsContext";
 
 const contexts: ContextMenu[] = [
-    userContext,
+    profileContext,
     guildStatisticsContext
 ];
 
