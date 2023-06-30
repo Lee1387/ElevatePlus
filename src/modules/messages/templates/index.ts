@@ -317,7 +317,6 @@ const guildStatistics = async (client: ExtendedClient, sourceGuild: Guild, color
     
     const guildVoicePeak = await getGuildVoicePeak(sourceGuild);
     const guildPresencePeak = await getGuildPresencePeak(sourceGuild);
-    console.log(guildVoicePeak, guildPresencePeak)
 
     return `
         <div class="flex flex-col items-center">
