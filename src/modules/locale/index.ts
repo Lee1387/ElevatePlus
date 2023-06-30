@@ -16,7 +16,7 @@ const withGuildLocale = async (client: ExtendedClient, guild: DiscordGuild) => {
 const setLocale = async (guild: DiscordGuild, locale: string) => {
     const exist = await GuildModel.findOne({ guildId: guild.id });
     if(!exist) return new Error("Guild not found");
-
+    
     exist.locale = locale;
     await exist.save();
     return exist;

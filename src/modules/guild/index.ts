@@ -1,7 +1,7 @@
 import { Guild } from "discord.js";
 import mongoose from "mongoose";
 import ExtendedClient from "../../client/ExtendedClient";
-import { Guild as DatabaseGuild } from "../../interfaces";
+import { Guild as DatabaseGuild } from "../../interfaces"
 import GuildSchema from "../schemas/Guild";
 
 const GuildModel = mongoose.model("Guild", GuildSchema);
@@ -76,7 +76,7 @@ const everyGuild = async (client: ExtendedClient, callback: (discordGuild: Guild
     const guilds = await getGuilds();
 
     if(!guilds.length) return new Error("No guilds found in database");
-
+    
     guilds.forEach(async databaseGuild => {
         const discordGuild = await client.guilds.cache.get(databaseGuild.guildId);
         if(!discordGuild) return;
