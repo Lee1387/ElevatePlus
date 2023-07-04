@@ -1,5 +1,5 @@
 {
-  "name": "discordbotts",
+  "name": "ElevatePlus",
   "version": "1.0.0",
   "description": "Advanced Discord Application with levelling and activity tracking utilities.",
   "main": "dist/index.js",
