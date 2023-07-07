@@ -26,12 +26,12 @@ const checkForDailyReward = async (client: ExtendedClient, member: GuildMember) 
 
     const diff = now.diff(lastVoiceActivityDate, "days");
     if(diff >= 1) {
-        await client.emit("userReceivedDailyReward", member.user, member.guild, next.unix());
+        await client.emit("userRecievedDailyReward", member.user, member.guild, next.unix());
     }
 };
 
 const startVoiceActivity = async (client: ExtendedClient, member: GuildMember, channel: VoiceBasedChannel) => {
-    if (
+    if(
         member.user.bot ||
         channel.equals(member.guild.afkChannel!)
     ) return;
@@ -56,7 +56,7 @@ const startVoiceActivity = async (client: ExtendedClient, member: GuildMember, c
 
 const startPresenceActivity = async (client: ExtendedClient, member: GuildMember, presence: Presence) => {
     if(member.user.bot) return;
-
+    
     const exists = await getPresenceActivity(member);
     if(exists) return;
 
@@ -132,7 +132,7 @@ const getUserGuildsActivityDetails = async (sourceUser: DatabaseUser) => {
             allDetails.get(voiceActivity.guildId)!.time.voice += duration;
         } else {
             allDetails.set(voiceActivity.guildId, {
-                guildId: voiceActivity.guildId, 
+                guildId: voiceActivity.guildId,
                 userId: voiceActivity.userId,
                 time: {
                     voice: duration
@@ -179,18 +179,18 @@ const mockDays = () => {
         });
     }
     return data;
-}
+};
 
-const getActiveUsersInHour = (voiceActivites: VoiceActivity[] | PresenceActivity[], hour: number): number => {
+const getActiveUsersInHour = (voiceActivities: VoiceActivity[] | PresenceActivity[], day: number, hour: number): number => {
     const activeUsers = new Set<string>();
-    for (const activity of voiceActivites) {
-        // Check if the activity started within the desired hour 
-        if (activity.from.getHours() === hour) {
+    for (const activity of voiceActivities) {
+        // Check if the activity started within the desired hour
+        if (activity.from.getHours() === hour && activity.from.getDay() === day) {
             activeUsers.add(activity.userId);
             continue;
         }
-        // Check if activity ended within the desired hour
-        if (activity.to && activity.to.getHours() === hour) {
+        // Check if the activity ended within the desired hour
+        if (activity.to && activity.to.getHours() === hour && activity.to.getDay() === day) {
             activeUsers.add(activity.userId);
         }
     }
@@ -241,7 +241,7 @@ const getGuildPresenceActivityInHoursAcrossWeek = async (guild: DatabaseGuild) =
 
         const hour = day.hours.find(h => h.hour === activityHour);
         if(hour) {
-            hour.activePeak = getActiveUsersInHour(query, activityHour);
+            hour.activePeak = getActiveUsersInHour(query, activityHour, day.day);
         }
     });
 
@@ -270,11 +270,11 @@ const getGuildVoicePeak = async (guild: DatabaseGuild) => {
         if(!activity.to) {
             activity.to = moment().toDate();
         }
-
+        
         const activityDay = moment(activity.to).day();
         const activityHour = moment(activity.to).hour();
 
-        const activeUsers = getActiveUsersInHour(query, activityHour);
+        const activeUsers = getActiveUsersInHour(query, activityHour, activityDay);
         if(activeUsers > activeUsersPeak) {
             activeUsersPeak = activeUsers;
         }
@@ -308,7 +308,7 @@ const getGuildPresencePeak = async (guild: DatabaseGuild) => {
         const activityDay = moment(activity.to).day();
         const activityHour = moment(activity.to).hour();
 
-        const activeUsers = getActiveUsersInHour(query, activityHour);
+        const activeUsers = getActiveUsersInHour(query, activityHour, activityDay);
         if(activeUsers > activeUsersPeak) {
             activeUsersPeak = activeUsers;
         }
@@ -340,7 +340,7 @@ const getGuildVoiceActivityInHoursAcrossWeek = async (guild: DatabaseGuild) => {
             activity.to = moment().toDate();
         }
         const activityDay = moment(activity.to).day();
-        const activityHour = moment(activity.to).hour();
+        const activityHour = moment(activity.to).hour();  
 
         const day = data.get(activityDay.toString());
         if(!day) return;
@@ -349,7 +349,7 @@ const getGuildVoiceActivityInHoursAcrossWeek = async (guild: DatabaseGuild) => {
 
         const hour = day.hours.find(h => h.hour === activityHour);
         if(hour) {
-            hour.activePeak = getActiveUsersInHour(query, activityHour);
+            hour.activePeak = getActiveUsersInHour(query, activityHour, day.day);
         }
     });
 
