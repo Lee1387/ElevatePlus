@@ -1,8 +1,8 @@
 module.exports = {
   apps: [
     {
-      name: "DBTS",
-      script: "npm run dev",
+      name: "EP",
+      script: "npm run start",
     },
   ],
 };

@@ -1,11 +1,11 @@
 {
-  "name": "ElevatePlus",
+  "name": "elevateplus",
   "version": "1.0.0",
   "description": "Advanced Discord Application with levelling and activity tracking utilities.",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "node .",
+    "start": "npx ts-node src/index.ts",
     "dev": "nodemon --config nodemon.json src/index.ts"
   },
   "keywords": [
