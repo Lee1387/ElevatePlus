@@ -11,6 +11,7 @@ export const database: Module = {
         
         try {
             await mongoose.connect(config.mongoUri);
+            mongoose.set("strictQuery", false);
             console.log("[Database] Connected to Mongo");
         } catch (err) {
             console.error("[Database] Error", err);
