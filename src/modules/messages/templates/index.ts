@@ -115,11 +115,11 @@ const getStatisticsTable = (guildStatistics: any, colors: ImageHexColors) => {
 
             let shadowColor = chromaColor.alpha(hoursAlpha/100).rgba().join(',');
             let hourAlpha = Math.round((hour.activePeak/dayStat.activePeak) * 100);
-            let hourColor = chromaColor.luminance(hourAlpha/100).rgba().join(",");
+            let hourColor = chromaColor.luminance(hourAlpha/100).rgba().join(',');
 
             return `<td class="m-0 p-0 w-7 h-7" style="box-shadow: 0 0 10px rgba(${shadowColor});">
                 <div 
-                    class="text-center w-7 h-7 text-black/60 font-bold text-sm flex items-center justify-center"
+                    class="text-center bg-[${colors.Vibrant}] w-7 h-7 text-black/60 font-bold text-sm flex items-center justify-center"
                     style="background-color: rgba(${hourColor});"
                 >
                     ${hour.activePeak}
@@ -314,8 +314,6 @@ const userProfile = async (client: ExtendedClient, user: User, colors: ImageHexC
 }
 
 const guildStatistics = async (client: ExtendedClient, sourceGuild: Guild, colors: ImageHexColors) => {
-    moment.locale(sourceGuild.locale);   
-
     let guild = client.guilds.cache.get(sourceGuild.guildId)!;
     let guildIconUrl = guild.iconURL({ extension: "png", size: 512 });
 
