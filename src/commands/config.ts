@@ -14,7 +14,7 @@ export const config: Command = {
         await updateUserStatistics(client, interaction.user, {
             commands: 1
         });
-        
+
         const configMessage = await getConfigMessagePayload(client, interaction.guild!);
         await interaction.followUp({ ...configMessage, ephemeral: true });
     }

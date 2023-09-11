@@ -7,7 +7,7 @@ export const voiceStreamingStop: Event = {
     run: async (client, member, voiceChannel) => {
         const voiceActivity = await getVoiceActivity(member) as VoiceActivity & Document;
         if (!voiceActivity) return;
-
+        
         voiceActivity.streaming = false;
         await voiceActivity.save();
     }

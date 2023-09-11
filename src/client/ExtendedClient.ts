@@ -23,17 +23,17 @@ class ExtendedClient extends Client {
     public selects: Collection<string, Select> = new Collection();
     public contexts: Collection<string, ContextMenu> = new Collection();
 
-    public locales = [ "en" ];
+    public locales = [ "en", "pl-PL" ];
     public i18n = i18n;
-    public numberFormat = Intl.NumberFormat("en", { notation: "compact" });
+    public numberFormat = Intl.NumberFormat('en', { notation: 'compact' });
 
     public async init() {
-        process 
-            .on("unhandledRejection", (reason, p) => {
-                console.error(reason, "Unhandled Rejection at Promise", p);
+        process
+            .on('unhandledRejection', (reason, p) => {
+                console.error(reason, 'Unhandled Rejection at Promise', p);
             })
-            .on("uncaughtException", err => {
-                console.error(err, "Uncaught Exception thrown");
+            .on('uncaughtException', err => {
+                console.error(err, 'Uncaught Exception thrown');
                 process.exit(1);
             });
 
@@ -42,6 +42,8 @@ class ExtendedClient extends Client {
             directory: join(__dirname, "..", "translations"),
             defaultLocale: "en"
         });
+
+        moment.locale("pl-PL");
 
         await this.loadModules();
         await this.loadContexts();
@@ -72,7 +74,7 @@ class ExtendedClient extends Client {
             await module.run(this);
         }
 
-        console.log("[Modules] Loaded ", this.modules.size);
+        console.log("[Modules] Loaded", this.modules.size);
     }
 
     public async loadSlashCommands() {
@@ -98,7 +100,7 @@ class ExtendedClient extends Client {
 
         console.log("[Selects] Loaded", this.selects.size);
     }
-
+    
     public async loadInteractions() {
         for (const interaction of interactions) {
             this.interactions.set(interaction.customId, interaction);

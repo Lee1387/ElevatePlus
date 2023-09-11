@@ -51,7 +51,7 @@ const getLevelRolesButton = async (client: ExtendedClient, sourceGuild: Database
 const getLevelRolesHoistButton = async (client: ExtendedClient, sourceGuild: DatabaseGuild) => {
     const levelRolesHoistButton = new ButtonBuilder()
         .setCustomId("levelRolesHoist")
-        .setLabel(client.i18n.__("config.levelRolesHoustButtonLabel"))
+        .setLabel(client.i18n.__("config.levelRolesHoistButtonLabel"))
         .setStyle(sourceGuild!.levelRolesHoist ? ButtonStyle.Success : ButtonStyle.Secondary);
 
     return levelRolesHoistButton;
@@ -67,11 +67,11 @@ const getProfileTimePublicButton = async (client: ExtendedClient, sourceUser: Us
 }
 
 const getQuickButtons = async (client: ExtendedClient, guild: Guild) => {
-    const profileButton = new ButtonBuilder()
+    const profileButon = new ButtonBuilder()
         .setCustomId("profile")
         .setLabel(client.i18n.__("quickButton.profileLabel"))
         .setStyle(ButtonStyle.Primary);
-
+    
     const statisticsButton = new ButtonBuilder()
         .setCustomId("guildStatistics")
         .setLabel(client.i18n.__("quickButton.guildStatisticsLabel"))
@@ -83,12 +83,12 @@ const getQuickButtons = async (client: ExtendedClient, guild: Guild) => {
         .setStyle(ButtonStyle.Secondary);
 
     const quickButtonsCollection: Collection<string, ButtonBuilder> = new Collection();
-
+    
     quickButtonsCollection.set("sweep", sweepButton);
-    quickButtonsCollection.set("profile", profileButton);
+    quickButtonsCollection.set("profile", profileButon);
     quickButtonsCollection.set("statistics", statisticsButton);
 
     return quickButtonsCollection;
-}
+}   
 
 export { getExitButton, getAutoSweepingButton, getQuickButtons, getNotificationsButton, getStatisticsNotificationButton, getLevelRolesButton, getLevelRolesHoistButton, getProfileTimePublicButton };

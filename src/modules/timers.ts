@@ -26,7 +26,7 @@ const schedules = [
     },
     {
         name: "yearly",
-        cron: yearlyCron,
+        cron: yearlyCron
     }
 ];
 
@@ -39,4 +39,4 @@ export const timers: Module = {
             cron.schedule(schedule.cron, async () => await client.emit(schedule.name));
         }
     }
-}
+}   

@@ -7,7 +7,7 @@ const statisticsNotification: Button = {
     run: async (client, interaction) => {
         await interaction.deferUpdate();
         await setStatisticsNotification(interaction.guild!);
-
+        
         const configMessage = await getConfigMessagePayload(client, interaction.guild!);
         await interaction.editReply({
             components: configMessage!.components

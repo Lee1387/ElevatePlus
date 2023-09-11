@@ -10,7 +10,7 @@ export const defaultChannelSelect: Select = {
         await interaction.deferUpdate();
         const guild = interaction.guild;
         const selected = interaction.values[0];
-
+        
         await setDefaultChannelId(guild!, selected);
 
         await withGuildLocale(client, guild!);

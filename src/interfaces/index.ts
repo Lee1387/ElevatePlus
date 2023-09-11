@@ -1,7 +1,7 @@
 export { Event } from "./Event";
 export { Module } from "./Module";
-export { User } from "./User"; 
-export { Config } from "./Config"; 
+export { User } from "./User";
+export { Config } from "./Config";
 export { Guild } from "./Guild";
 export { Interaction } from "./Interaction";
 export { PresenceActivity } from "./PresenceActivity";
@@ -13,5 +13,5 @@ export { SelectMenuOption } from "./SelectMenuOption";
 export { ExtendedStatistics } from "./User";
 export { Statistics } from "./User";
 export { ContextMenu } from "./ContextMenu";
-export { UserGuildActivityDetails } from "./UserGuildActivityDetails";
-export { ExtendedStatisticsPayload } from "./User";
+export { UserGuildActivityDetails } from './UserGuildActivityDetails';
+export { ExtendedStatisticsPayload } from './User';

@@ -9,7 +9,7 @@ const getChannelSelect = async (client: ExtendedClient, currentDefault: TextChan
         .setMinValues(1)
         .setMaxValues(1)
         .addOptions(options);
-
+    
     return channelSelect;
 }
 
@@ -19,7 +19,7 @@ const getLanguageSelect = async (client: ExtendedClient, currentLocale: string, 
         .setPlaceholder(client.i18n.__mf("config.selectLocalePlaceholder", { locale: currentLocale }))
         .setMinValues(1)
         .setMaxValues(1)
-        .addOptions(options)
+        .addOptions(options);
 
     return localeSelect;
 }

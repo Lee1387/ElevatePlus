@@ -1,5 +1,5 @@
-import { Schema } from "mongoose";
-import { User } from "../../interfaces";
+import { Schema } from 'mongoose';
+import { User } from '../../interfaces';
 
 const reqString = { type: String, required: true };
 
@@ -32,7 +32,7 @@ const userSchema = new Schema<User>({
   stats: ExtendedStatistics,
   day: Statistics,
   week: Statistics,
-  month: Statistics,
+  month: Statistics
 }, {
   timestamps: true
 });

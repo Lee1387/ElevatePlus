@@ -1,4 +1,4 @@
-import { AttachmentBuilder, ActionRowBuilder, BaseGuildEmoji, ButtonBuilder, ButtonComponent, ButtonStyle, ChannelType, Emoji, Guild, StringSelectMenuBuilder, TextChannel, ThreadChannel, SelectMenuOptionBuilder, SelectMenuComponentOptionData, MessagePayload, StringSelectMenuOptionBuilder, BaseInteraction, InteractionType, ButtonInteraction, InteractionResponse, CommandInteraction, ContextMenuCommandInteraction, UserContextMenuCommandInteraction, User, Message, Collection, ImageURLOptions } from "discord.js";
+import { AttachmentBuilder, ActionRowBuilder, ButtonBuilder, ChannelType, Guild, StringSelectMenuBuilder, TextChannel, ThreadChannel, SelectMenuOptionBuilder, SelectMenuComponentOptionData, MessagePayload, StringSelectMenuOptionBuilder, BaseInteraction, InteractionType, ButtonInteraction, InteractionResponse, CommandInteraction, ContextMenuCommandInteraction, UserContextMenuCommandInteraction, User, Message, Collection, ImageURLOptions } from "discord.js";
 import ExtendedClient from "../../client/ExtendedClient";
 import { withGuildLocale } from "../locale";
 import nodeHtmlToImage from "node-html-to-image";
@@ -7,8 +7,8 @@ import { Guild as GuildInterface, SelectMenuOption, User as DatabaseUser } from 
 import { getAutoSweepingButton, getLevelRolesButton, getLevelRolesHoistButton, getNotificationsButton, getProfileTimePublicButton, getQuickButtons, getStatisticsNotificationButton } from "./buttons";
 import { getChannelSelect, getLanguageSelect } from "./selects";
 
-import Vibrant = require("node-vibrant");
-import chroma = require("chroma-js");
+import Vibrant = require('node-vibrant');
+import chroma = require('chroma-js');
 import { guildConfig, guildStatistics, layoutLarge, layoutMedium, layoutXLarge, userProfile } from "./templates";
 import { getUser } from "../user";
 
@@ -18,10 +18,10 @@ interface ImageHexColors {
 }
 
 const useImageHex = async (image: string) => {
-    if(!image) return { Vibrant: "#373b48", DarkVibrant: "373b48" };
+    if(!image) return { Vibrant: "#373b48", DarkVibrant: "#373b48" };
     const colors = await Vibrant.from(image).getPalette();
     return {
-        Vibrant: chroma(colors.Vibrant!.hex!).hex(),
+        Vibrant: chroma(colors.Vibrant!.hex!).hex(), 
         DarkVibrant: chroma(colors.DarkVibrant!.hex!).hex()
     };
 }
@@ -36,7 +36,7 @@ const useHtmlFile = async (html: string) => {
         quality: 100,
         type: "png",
         puppeteerArgs: {
-            args: ["--no-sandbox"],
+            args: ['--no-sandbox'],
         },
         encoding: "base64"
     });
@@ -68,7 +68,7 @@ const getConfigMessagePayload = async (client: ExtendedClient, guild: Guild) => 
             value: channel.id
         }
     });
-
+    
     const notificationsButton = await getNotificationsButton(client, sourceGuild);
     const statisticsNotificationButton = await getStatisticsNotificationButton(client, sourceGuild);
     const levelRolesButton = await getLevelRolesButton(client, sourceGuild);
@@ -76,42 +76,42 @@ const getConfigMessagePayload = async (client: ExtendedClient, guild: Guild) => 
     const autoSweepingButton = await getAutoSweepingButton(client, sourceGuild);
     const channelSelect = await getChannelSelect(client, currentDefault as TextChannel, defaultChannelOptions as SelectMenuOption[]);
 
-        const locales = client.i18n.getLocales();
-        const currentLocale = client.i18n.getLocale();
-        const languageNames = new Intl.DisplayNames([currentLocale], {
-            type: "language"
-        });
-        const languageOptions: SelectMenuOption[] = locales.map((locale) => {
-            return {
-                label: `${languageNames.of(locale)}`,
-                description: locale,
-                value: locale
-            }
-        });
-
-        const languageSelect = await getLanguageSelect(client, currentLocale, languageOptions);
-
-
-        const row = new ActionRowBuilder<StringSelectMenuBuilder>()
-            .setComponents(channelSelect);
-        const row2 = new ActionRowBuilder<StringSelectMenuBuilder>()
-            .setComponents(languageSelect);
-        const row3 = new ActionRowBuilder<ButtonBuilder>()
-            .setComponents(levelRolesButton, levelRolesHoistButton);
-        const row4 = new ActionRowBuilder<ButtonBuilder>()
-            .setComponents(notificationsButton, autoSweepingButton, statisticsNotificationButton);
-
-        const guildIcon = guild.iconURL({ extension: "png" });
-        var colors: ImageHexColors = await useImageHex(guildIcon!);
-        const guildConfigHtml = await guildConfig(client, sourceGuild, colors);
-        const file = await useHtmlFile(layoutMedium(guildConfigHtml, colors));
-
+    const locales = client.i18n.getLocales();
+    const currentLocale = client.i18n.getLocale(); 
+    const languageNames = new Intl.DisplayNames([currentLocale], {
+        type: 'language'
+    });
+    const languageOptions: SelectMenuOption[] = locales.map((locale) => {
         return {
-            components: [row, row2, row3, row4],
-            files: [file],
-            ephemeral: true
-        };
-    }
+            label: `${languageNames.of(locale)}`,
+            description: locale,
+            value: locale
+        }
+    });
+
+    const languageSelect = await getLanguageSelect(client, currentLocale, languageOptions);
+    
+        
+    const row = new ActionRowBuilder<StringSelectMenuBuilder>()
+        .setComponents(channelSelect);
+    const row2 = new ActionRowBuilder<StringSelectMenuBuilder>()
+        .setComponents(languageSelect);
+    const row3 = new ActionRowBuilder<ButtonBuilder>()
+        .setComponents(levelRolesButton, levelRolesHoistButton);
+    const row4 = new ActionRowBuilder<ButtonBuilder>()
+        .setComponents(notificationsButton, autoSweepingButton, statisticsNotificationButton);
+
+    const guildIcon = guild.iconURL({ extension: "png" });
+    var colors: ImageHexColors = await useImageHex(guildIcon!);
+    const guildConfigHtml = await guildConfig(client, sourceGuild, colors);
+    const file = await useHtmlFile(layoutMedium(guildConfigHtml, colors));
+
+    return {
+        components: [row, row2, row3, row4],
+        files: [file],
+        ephemeral: true
+    };
+}
 
 const getUserMessagePayload = async (client: ExtendedClient, interaction: ButtonInteraction | UserContextMenuCommandInteraction, targetUser?: DatabaseUser) => {
     await withGuildLocale(client, interaction.guild!);
@@ -134,7 +134,7 @@ const getUserMessagePayload = async (client: ExtendedClient, interaction: Button
     const file = await useHtmlFile(layoutLarge(userProfileHtml, colors));
     const profileTimePublic = await getProfileTimePublicButton(client, sourceTargetUser);
     const row = new ActionRowBuilder<ButtonBuilder>().setComponents(profileTimePublic!);
-
+        
     return { files: [file], ephemeral: true, components: selfCall ? [row] : [] };
 }
 
@@ -172,7 +172,7 @@ const getLevelUpMessagePayload = async (client: ExtendedClient, user: User, guil
                 value: `\`\`\`${sourceUser.stats.games.won.skill + sourceUser.stats.games.won.skin}\`\`\``,
                 inline: true
             },
-            {
+            { 
                 name: client.i18n.__("notifications.weekVoiceTimeField"),
                 value: `\`\`\`${Math.round((sourceUser.week.time.voice)/3600)} H\`\`\``,
                 inline: true
@@ -205,7 +205,7 @@ const getDailyRewardMessagePayload = async (client: ExtendedClient, user: User, 
                 value: `\`\`\`${client.numberFormat.format(reward)} EXP\`\`\``,
                 inline: true
             },
-            {
+            { 
                 name: client.i18n.__("notifications.weekVoiceTimeField"),
                 value: `\`\`\`${(Math.round(sourceUser.week.time.voice)/3600)} H\`\`\``,
                 inline: true
@@ -224,7 +224,7 @@ const getDailyRewardMessagePayload = async (client: ExtendedClient, user: User, 
 const sendToDefaultChannel = async (client: ExtendedClient, guild: Guild, message: MessagePayload | string, temporary: boolean = true) => {
     const sourceGuild = await getGuild(guild) as GuildInterface;
     if(!sourceGuild.channelId) return null;
-
+    
     const defaultChannel = await client.channels.fetch(sourceGuild.channelId) as TextChannel;
     if(!defaultChannel) return null;
 
@@ -253,7 +253,7 @@ const sweepTextChannel = async (client: ExtendedClient, guild: Guild, channel: T
         
         const messagesToDelete = messages.filter((message: Message) => {
             const filter =
-                popularPrefixes.some(prefix => message.content.startsWith(prefix)) ||
+                popularPrefixes.some(prefix => message.content.startsWith(prefix)) || 
                 (message.author.bot && message.attachments && message.attachments.size == 0) ||
                 (message.author.bot && message.embeds.length)
             return filter;
@@ -283,7 +283,7 @@ const attachQuickButtons = async (client: ExtendedClient, channel: TextChannel) 
         await sendToDefaultChannel(client, channel.guild, client.i18n.__("utils.missingPermissions"));
         return;
     }
-
+    
     const clientLastMessages = lastMessages.filter(m => m.author.id == client.user!.id) as Collection<string, Message>;
     const lastMessage = clientLastMessages.first();
     if(!lastMessage) return;
@@ -292,7 +292,7 @@ const attachQuickButtons = async (client: ExtendedClient, channel: TextChannel) 
     const row = new ActionRowBuilder<ButtonBuilder>()
         .setComponents(buttons.get("sweep")!, buttons.get("profile")!, buttons.get("statistics")!);
 
-        for await (const message of clientLastMessages.values()) {
+    for await (const message of clientLastMessages.values()) {
         if(message.components.length > 0 && message.id != lastMessage.id) {
             try {
                 await message.edit({ components: [] });

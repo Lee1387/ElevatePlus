@@ -1,5 +1,5 @@
-import { Schema } from "mongoose";
-import { Guild } from "../../interfaces";
+import { Schema } from 'mongoose';
+import { Guild } from '../../interfaces';
 
 const channelId = { type: String, default: null };
 const reqString = { type: String, required: true };

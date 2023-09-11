@@ -1,4 +1,4 @@
-import ExtendedClient from "./ExtendedClient";
+import ExtendedClient from './ExtendedClient';
 import { GatewayIntentBits } from "discord.js";
 import logs from "discord-logs";
 
@@ -9,7 +9,7 @@ const client = new ExtendedClient({
         GatewayIntentBits.GuildMembers,
         GatewayIntentBits.MessageContent,
         GatewayIntentBits.GuildVoiceStates,
-        GatewayIntentBits.GuildPresences,
+        GatewayIntentBits.GuildPresences
     ]
 });
 

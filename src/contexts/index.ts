@@ -1,11 +1,11 @@
 import { ContextMenu } from "../interfaces";
 import profileContext from "./profileContext";
-import guildStatisticsContext from "./guildStatisticsContext";
+import guildStatisitcsContext from "./guildStatisticsContext";
 import sweepContext from "./sweepContext";
 
 const contexts: ContextMenu[] = [
     profileContext,
-    guildStatisticsContext,
+    guildStatisitcsContext,
     sweepContext
 ];
 

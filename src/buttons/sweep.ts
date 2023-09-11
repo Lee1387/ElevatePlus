@@ -7,7 +7,7 @@ const sweep: Button = {
     customId: `sweep`,
     run: async (client, interaction) => {
         await withGuildLocale(client, interaction.guild!);
-
+        
         await interaction.deferReply({ ephemeral: true });
 
         const sweeped = await sweepTextChannel(client, interaction.guild!, interaction.channel as TextChannel);

@@ -1,4 +1,4 @@
-import { BaseChannel, ChannelType, GuildMember } from "discord.js";
+import { BaseChannel, ChannelType, GuildMember, ImageURLOptions } from "discord.js";
 import { ImageHexColors, useImageHex } from "..";
 import ExtendedClient from "../../../client/ExtendedClient";
 import { Guild, User, ExtendedStatisticsPayload } from "../../../interfaces";
@@ -74,7 +74,7 @@ const getStatisticsTable = (guildStatistics: any, colors: ImageHexColors) => {
     const hoursTh = () => {
         return Array(24).fill(0).map((_, i) => {
             return `<th>${i}</th>`;
-        }).join("");
+        }).join('');
     }
 
     const daysTr = () => {
@@ -88,18 +88,18 @@ const getStatisticsTable = (guildStatistics: any, colors: ImageHexColors) => {
                 <td>${dayCapitalized}</td>
                 ${dayTd(dayIndex)}
             </tr>`;
-        }).join("");
+        }).join('');
     }
 
     const dayTd = (day: number) => {
         let dayStat = guildStatistics.get(day.toString());
 
-        return Array(24).fill(0).map((_, i) =>  {
+        return Array(24).fill(0).map((_, i) => {
             let hour = dayStat.hours.find((hour: any) => hour.hour === i);
             let hourMoment = moment().day(day).hour(i);
             let isHourInPast = hourMoment.isBefore(moment());
-            let hoursDiff = moment().diff(hourMoment, "hours");
-
+            let hoursDiff = moment().diff(hourMoment, 'hours');
+            
             let hoursAlpha = Math.round((1-(hoursDiff/7)) * 100) > 0 ? Math.floor((1-(hoursDiff/7)) * 100) > 100 ? 0 : Math.floor((1-(hoursDiff/7)) * 100) : 0;
 
             if(!hour.activePeak || !dayStat.activePeak) {
@@ -107,7 +107,7 @@ const getStatisticsTable = (guildStatistics: any, colors: ImageHexColors) => {
                     return `<td>
                         <div class="text-center w-7 h-7 bg-white/5" style="opacity: ${hoursAlpha || 5}%"></div>
                     </td>`;
-                else 
+                else
                     return `<td>
                         <div class="text-center w-7 h-7 bg-white/5" style="opacity: ${hoursAlpha || 5}%"></div>
                     </td>`;
@@ -125,7 +125,7 @@ const getStatisticsTable = (guildStatistics: any, colors: ImageHexColors) => {
                     ${hour.activePeak}
                 </div>
             </td>`;
-        }).join("");
+        }).join('');
     }
 
     return `<table class="text-white/50 border-none border-0" cellspacing="0" cellpadding="0">
@@ -143,7 +143,7 @@ const getStatisticsTable = (guildStatistics: any, colors: ImageHexColors) => {
 
 const guildConfig = async (client: ExtendedClient, sourceGuild: Guild, colors: ImageHexColors) => {
     const guild = await client.guilds.fetch(sourceGuild.guildId);
-    const guildIcon = guild.iconURL({ extension: "png" });    
+    const guildIcon = guild.iconURL({ dynamic: false, extension: "png", forceStatic: true } as ImageURLOptions);    
 
     return `
         <div class="flex flex-col items-center space-y-3">
@@ -277,7 +277,7 @@ const userProfile = async (client: ExtendedClient, user: User, colors: ImageHexC
                 </div>
             </div>
             ${ selfCall || user.stats.time.public ? `
-                <div class="w-full relative flex flex-col space-y-1 px-4 py-3 items-center rounded-xl shadow-md bg-[#202225] ${user.stats.time.public ? 'opacity-100' : 'opacity-70'}">
+                            <div class="w-full relative flex flex-col space-y-1 px-4 py-3 items-center rounded-xl shadow-md bg-[#202225] ${user.stats.time.public ? 'opacity-100' : 'opacity-70'}">
                                 <div class="flex flex-row flex-grow space-x-6 items-center justify-center">
                                     <div class="flex flex-col items-center p-2 justify-center">
                                         <div class="flex space-x-2 items-center">

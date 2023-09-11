@@ -158,7 +158,7 @@ const mockDays = () => {
 const getActiveUsersInHour = (activities: VoiceActivity[] | PresenceActivity[], day: number, hour: number): number => {
     let activeUsers = new Set<string>();
     for (const activity of activities) {
-        if (!activity.to) activity.to = moment().toDate();
+        if(!activity.to) activity.to = moment().toDate();
 
         if (
             (activity.from.getHours() === hour && activity.from.getDay() === day) ||
@@ -186,8 +186,8 @@ const getActiveUsersInDay = (activities: VoiceActivity[] | PresenceActivity[], d
 }
 
 const getGuildPresenceActivityInHoursAcrossWeek = async (guild: DatabaseGuild) => {
-    const startWeek = moment().startOf("week").add(1, "hour").toDate();
-    const endWeek = moment().endOf("week").add(1, "hour").toDate();
+    const startWeek = moment().startOf("week").add(1, 'hour').toDate();
+    const endWeek = moment().endOf("week").add(1, 'hour').toDate();
 
     const query = await presenceActivityModel.find({
         guildId: guild.guildId,
@@ -226,8 +226,8 @@ const getGuildPresenceActivityInHoursAcrossWeek = async (guild: DatabaseGuild) =
 }
 
 const getGuildVoiceActivityInHoursAcrossWeek = async (guild: DatabaseGuild) => {
-    const startWeek = moment().startOf("week").add(1, "hour").toDate();
-    const endWeek = moment().endOf("week").add(1, "hour").toDate();
+    const startWeek = moment().startOf("week").add(1, 'hour').toDate();
+    const endWeek = moment().endOf("week").add(1, 'hour').toDate();
 
     const query = await voiceActivityModel.find({
         guildId: guild.guildId,

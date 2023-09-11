@@ -12,7 +12,7 @@ const levelRoles: Button = {
         await interaction.deferUpdate();
         await setLevelRoles(interaction.guild) as DatabaseGuild;
         await syncGuildLevelRoles(client, interaction.guild);
-
+        
         const configMessage = await getConfigMessagePayload(client, interaction.guild);
         await interaction.editReply({
             components: configMessage!.components

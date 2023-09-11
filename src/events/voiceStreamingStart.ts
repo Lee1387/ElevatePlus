@@ -7,7 +7,7 @@ export const voiceStreamingStart: Event = {
     run: async (client, member, voiceChannel) => {
         const voiceActivity = await getVoiceActivity(member) as VoiceActivity & Document;
         if (!voiceActivity) return;
-
+        
         voiceActivity.streaming = true;
         await voiceActivity.save();
     }

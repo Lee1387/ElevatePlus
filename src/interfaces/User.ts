@@ -1,16 +1,16 @@
 export interface Statistics {
   exp: number;
   time: {
-    public: Boolean;
+    public: boolean;
     voice: number;
     presence: number;
   };
   games: {
     won: {
       skill: number;
-      skin: number;
-    };
-  };
+      skin: number; 
+    }
+  }
 }
 
 export interface ExtendedStatistics extends Statistics {
@@ -31,8 +31,8 @@ export interface ExtendedStatisticsPayload {
     won?: {
       skill?: number;
       skin?: number;
-    };
-  };
+    }
+  }
 }
 
 export interface User {
@@ -41,7 +41,7 @@ export interface User {
   avatarUrl: string;
   followers: string[];
   stats: ExtendedStatistics;
-  day: Statistics;
-  week: Statistics;
-  month: Statistics;
+  day: Statistics,
+  week: Statistics,
+  month: Statistics
 }

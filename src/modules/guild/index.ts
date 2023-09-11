@@ -81,7 +81,7 @@ const setLevelRolesHoist = async (guild: Guild) => {
     return guildToUpdate;
 }
 
-const setAutoSweeping = async (guild: Guild) => {
+const setAutoSweeing = async (guild: Guild) => {
     const guildToUpdate = await GuildModel.findOne({
         guildId: guild.id
     });
@@ -106,4 +106,4 @@ const everyGuild = async (client: ExtendedClient, callback: (discordGuild: Guild
     })
 }
 
-export { createGuild, setAutoSweeping, deleteGuild, setDefaultChannelId, setStatisticsNotification, getGuild, getGuilds, setNotifications, everyGuild, setLevelRoles, setLevelRolesHoist };
+export { createGuild, setAutoSweeing, deleteGuild, setDefaultChannelId, setStatisticsNotification, getGuild, getGuilds, setNotifications, everyGuild, setLevelRoles, setLevelRolesHoist };

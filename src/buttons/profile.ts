@@ -9,7 +9,7 @@ const profile: Button = {
         await withGuildLocale(client, interaction.guild!);
 
         await interaction.deferReply({ ephemeral: true });
-
+        
         const profileMessagePayload = await getUserMessagePayload(client, interaction as ButtonInteraction);
         await interaction.followUp({ ...profileMessagePayload, ephemeral: true });
     }

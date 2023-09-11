@@ -7,7 +7,7 @@ const notifications: Button = {
     run: async (client, interaction) => {
         await interaction.deferUpdate();
         await setNotifications(interaction.guild!);
-
+        
         const configMessage = await getConfigMessagePayload(client, interaction.guild!);
         await interaction.editReply({
             components: configMessage!.components

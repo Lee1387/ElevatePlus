@@ -21,17 +21,17 @@ const replacePlaceholders = async (activity: ActivitiesOptions, guilds: Database
 };
 
 const generatePresence = async (client: ExtendedClient, guilds: DatabaseGuild[]) => {
-    const data = require("./presences.json");
+    const data = require('./presences.json');
 
     const presences: PresenceData[] = JSON.parse(JSON.stringify(data));
     const random = presences[Math.floor(Math.random() * presences.length)];
-
+    
     if(random.activities) {
         random.activities = await Promise.all(random.activities.map(async (activity: ActivitiesOptions) => {
             return await replacePlaceholders(activity, guilds);
         }));
     }
-
+    
     await client.user?.setPresence(random);
 };
 

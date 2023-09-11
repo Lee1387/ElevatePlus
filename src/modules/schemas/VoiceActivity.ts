@@ -1,5 +1,5 @@
-import { Schema } from "mongoose";
-import { VoiceActivity } from "../../interfaces";
+import { Schema } from 'mongoose';
+import { VoiceActivity } from '../../interfaces';
 
 const reqString = { type: String, required: true };
 

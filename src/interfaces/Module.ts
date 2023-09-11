@@ -5,6 +5,6 @@ interface Run {
 }
 
 export interface Module {
-    name: string,
-    run: Run,
+    name: string;
+    run: Run;
 }

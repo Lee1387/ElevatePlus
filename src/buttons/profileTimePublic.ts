@@ -9,7 +9,7 @@ const profileTimePublic: Button = {
         await interaction.deferUpdate();
 
         await setPublicTimeStats(interaction.user);
-
+    
         const profileMessagePayload = await getUserMessagePayload(client, interaction as ButtonInteraction);
         await interaction.editReply({
             files: profileMessagePayload!.files,
